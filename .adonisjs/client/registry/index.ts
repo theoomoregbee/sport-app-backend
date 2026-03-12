@@ -30,6 +30,30 @@ const routes = {
     tokens: [{"old":"/api/v1/account/profile","type":0,"val":"api","end":""},{"old":"/api/v1/account/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/account/profile","type":0,"val":"account","end":""},{"old":"/api/v1/account/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.profile.show']['types'],
   },
+  'courts.courts.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/courts',
+    tokens: [{"old":"/api/v1/courts","type":0,"val":"api","end":""},{"old":"/api/v1/courts","type":0,"val":"v1","end":""},{"old":"/api/v1/courts","type":0,"val":"courts","end":""}],
+    types: placeholder as Registry['courts.courts.index']['types'],
+  },
+  'courts.courts.nearby': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/courts/nearby',
+    tokens: [{"old":"/api/v1/courts/nearby","type":0,"val":"api","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"nearby","end":""}],
+    types: placeholder as Registry['courts.courts.nearby']['types'],
+  },
+  'courts.courts.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/courts/:id',
+    tokens: [{"old":"/api/v1/courts/:id","type":0,"val":"api","end":""},{"old":"/api/v1/courts/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/:id","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['courts.courts.show']['types'],
+  },
+  'checkIns.check_ins.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/check-ins',
+    tokens: [{"old":"/api/v1/check-ins","type":0,"val":"api","end":""},{"old":"/api/v1/check-ins","type":0,"val":"v1","end":""},{"old":"/api/v1/check-ins","type":0,"val":"check-ins","end":""}],
+    types: placeholder as Registry['checkIns.check_ins.store']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

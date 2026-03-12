@@ -33,5 +33,24 @@ router
       .prefix('account')
       .as('profile')
       .use(middleware.auth())
+
+    // Courts — public read access
+    router
+      .group(() => {
+        router.get('/', [controllers.Courts, 'index'])
+        router.get('/nearby', [controllers.Courts, 'nearby'])
+        router.get('/:id', [controllers.Courts, 'show'])
+      })
+      .prefix('courts')
+      .as('courts')
+
+    // Check-ins — requires auth
+    router
+      .group(() => {
+        router.post('/', [controllers.CheckIns, 'store'])
+      })
+      .prefix('check-ins')
+      .as('checkIns')
+      .use(middleware.auth())
   })
   .prefix('/api/v1')

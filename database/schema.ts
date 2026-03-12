@@ -32,8 +32,81 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class CheckInSchema extends BaseModel {
+  static $columns = ['confidenceWeight', 'courtGroupId', 'courtId', 'createdAt', 'id', 'latitude', 'longitude', 'racketsWaiting', 'status', 'userId'] as const
+  $columns = CheckInSchema.$columns
+  @column()
+  declare confidenceWeight: string
+  @column()
+  declare courtGroupId: number | null
+  @column()
+  declare courtId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare latitude: string
+  @column()
+  declare longitude: string
+  @column()
+  declare racketsWaiting: number | null
+  @column()
+  declare status: string
+  @column()
+  declare userId: number
+}
+
+export class CourtGroupSchema extends BaseModel {
+  static $columns = ['courtCount', 'courtId', 'createdAt', 'id', 'name', 'notes', 'sessionTimeMinutes', 'updatedAt'] as const
+  $columns = CourtGroupSchema.$columns
+  @column()
+  declare courtCount: number
+  @column()
+  declare courtId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+  @column()
+  declare notes: string | null
+  @column()
+  declare sessionTimeMinutes: number | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class CourtSchema extends BaseModel {
+  static $columns = ['address', 'createdAt', 'id', 'isPriority', 'latitude', 'longitude', 'name', 'photoUrl', 'slug', 'totalCourtCount', 'updatedAt'] as const
+  $columns = CourtSchema.$columns
+  @column()
+  declare address: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isPriority: boolean
+  @column()
+  declare latitude: string
+  @column()
+  declare longitude: string
+  @column()
+  declare name: string
+  @column()
+  declare photoUrl: string | null
+  @column()
+  declare slug: string
+  @column()
+  declare totalCourtCount: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
+  static $columns = ['createdAt', 'email', 'fullName', 'id', 'isAmbassador', 'password', 'phone', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -43,8 +116,12 @@ export class UserSchema extends BaseModel {
   declare fullName: string | null
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare isAmbassador: boolean
   @column({ serializeAs: null })
   declare password: string
+  @column()
+  declare phone: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

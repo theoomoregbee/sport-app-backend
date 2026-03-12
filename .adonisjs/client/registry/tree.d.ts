@@ -16,4 +16,16 @@ export interface ApiDefinition {
       show: typeof routes['profile.profile.show']
     }
   }
+  courts: {
+    courts: {
+      index: typeof routes['courts.courts.index']
+      nearby: typeof routes['courts.courts.nearby']
+      show: typeof routes['courts.courts.show']
+    }
+  }
+  checkIns: {
+    checkIns: {
+      store: typeof routes['checkIns.check_ins.store']
+    }
+  }
 }

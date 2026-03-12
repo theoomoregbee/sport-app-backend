@@ -55,4 +55,52 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
     }
   }
+  'courts.courts.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/courts'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['index']>>>
+    }
+  }
+  'courts.courts.nearby': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/courts/nearby'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/court').nearbyQueryValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['nearby']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['nearby']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'courts.courts.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/courts/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['show']>>>
+    }
+  }
+  'checkIns.check_ins.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/check-ins'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/check_in').createCheckInValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/check_in').createCheckInValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/check_ins_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/check_ins_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
 }

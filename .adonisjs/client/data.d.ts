@@ -5,9 +5,24 @@
 
 /// <reference path="./manifest.d.ts" />
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
+import type CheckInTransformer from '#transformers/check_in_transformer'
+import type CourtGroupTransformer from '#transformers/court_group_transformer'
+import type CourtTransformer from '#transformers/court_transformer'
 import type UserTransformer from '#transformers/user_transformer'
 
 export namespace Data {
+  export type CheckIn = InferData<CheckInTransformer>
+  export namespace CheckIn {
+    export type Variants = InferVariants<CheckInTransformer>
+  }
+  export type CourtGroup = InferData<CourtGroupTransformer>
+  export namespace CourtGroup {
+    export type Variants = InferVariants<CourtGroupTransformer>
+  }
+  export type Court = InferData<CourtTransformer>
+  export namespace Court {
+    export type Variants = InferVariants<CourtTransformer>
+  }
   export type User = InferData<UserTransformer>
   export namespace User {
     export type Variants = InferVariants<UserTransformer>
