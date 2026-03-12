@@ -4,6 +4,7 @@ import { haversineDistance, MAX_CHECKIN_DISTANCE_METRES } from '#services/locati
 import CheckInTransformer from '#transformers/check_in_transformer'
 import { createCheckInValidator } from '#validators/check_in'
 import type { HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
 import { DateTime } from 'luxon'
 
 export default class CheckInsController {
@@ -28,7 +29,8 @@ export default class CheckInsController {
       Number(court.longitude)
     )
 
-    if (distanceMetres > MAX_CHECKIN_DISTANCE_METRES) {
+    const devAdminBypass = app.inDev && user.isAmbassador
+    if (!devAdminBypass && distanceMetres > MAX_CHECKIN_DISTANCE_METRES) {
       return response.unprocessableEntity({
         message: `You must be within ${MAX_CHECKIN_DISTANCE_METRES}m of the court to check in. You appear to be ${Math.round(distanceMetres)}m away.`,
       })
