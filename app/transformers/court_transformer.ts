@@ -27,11 +27,11 @@ export default class CourtTransformer extends BaseTransformer<Court> {
       'updatedAt',
     ])
 
-    const groups =
-      this.resource.courtGroups?.map((g) => CourtGroupTransformer.transform(g)) ?? []
+    const groups = CourtGroupTransformer.transform(this.whenLoaded(this.resource.courtGroups))
 
-    const recentCheckIns =
-      this.resource.checkIns?.slice(0, 5).map((c) => CheckInTransformer.transform(c)) ?? []
+    const recentCheckIns = CheckInTransformer.transform(
+      this.whenLoaded(this.resource.checkIns?.slice(0, 5))
+    )
 
     return {
       ...base,

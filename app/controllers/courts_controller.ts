@@ -53,13 +53,26 @@ export default class CourtsController {
       `,
       [
         // ASIN args
-        lat, lat, lng,
+        lat,
+        lat,
+        lng,
         // bounding box — lat band
-        lat, radius, lat, radius,
+        lat,
+        radius,
+        lat,
+        radius,
         // bounding box — lng band
-        lng, radius, lat, lng, radius, lat,
+        lng,
+        radius,
+        lat,
+        lng,
+        radius,
+        lat,
         // HAVING filter
-        lat, lat, lng, radius,
+        lat,
+        lat,
+        lng,
+        radius,
       ]
     )
 
