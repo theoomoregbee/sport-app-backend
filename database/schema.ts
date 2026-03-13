@@ -107,6 +107,23 @@ export class CourtSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class DenyListSchema extends BaseModel {
+  static $columns = ['createdAt', 'expiresAt', 'id', 'reason', 'type', 'value'] as const
+  $columns = DenyListSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare expiresAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare reason: string | null
+  @column()
+  declare type: string
+  @column()
+  declare value: string
+}
+
 export class PresenceSchema extends BaseModel {
   static $columns = ['courtId', 'enteredAt', 'id', 'lastHeartbeatAt', 'userId'] as const
   $columns = PresenceSchema.$columns
@@ -122,15 +139,34 @@ export class PresenceSchema extends BaseModel {
   declare userId: number
 }
 
+export class RateLimitSchema extends BaseModel {
+  static $columns = ['expire', 'key', 'points'] as const
+  $columns = RateLimitSchema.$columns
+  @column()
+  declare expire: bigint | number | null
+  @column({ isPrimary: true })
+  declare key: string
+  @column()
+  declare points: number
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'isAmbassador', 'isSuperAdmin', 'password', 'phone', 'updatedAt'] as const
+  static $columns = ['avatarUrl', 'bio', 'createdAt', 'email', 'fullName', 'hideName', 'homeCourtIds', 'id', 'isAmbassador', 'isSuperAdmin', 'password', 'phone', 'playStyle', 'preferredTimes', 'profileCompletedAt', 'skillLevel', 'updatedAt'] as const
   $columns = UserSchema.$columns
+  @column()
+  declare avatarUrl: string | null
+  @column()
+  declare bio: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()
   declare email: string
   @column()
   declare fullName: string | null
+  @column()
+  declare hideName: boolean
+  @column()
+  declare homeCourtIds: any | null
   @column({ isPrimary: true })
   declare id: number
   @column()
@@ -141,6 +177,31 @@ export class UserSchema extends BaseModel {
   declare password: string
   @column()
   declare phone: string | null
+  @column()
+  declare playStyle: any | null
+  @column()
+  declare preferredTimes: any | null
+  @column.dateTime()
+  declare profileCompletedAt: DateTime | null
+  @column()
+  declare skillLevel: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class WaitlistEntrySchema extends BaseModel {
+  static $columns = ['createdAt', 'email', 'id', 'referrer', 'source', 'updatedAt'] as const
+  $columns = WaitlistEntrySchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare email: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare referrer: string | null
+  @column()
+  declare source: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

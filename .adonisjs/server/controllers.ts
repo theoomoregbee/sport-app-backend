@@ -10,4 +10,6 @@ export const controllers = {
   NewAccount: () => import('#controllers/new_account_controller'),
   Presences: () => import('#controllers/presences_controller'),
   Profile: () => import('#controllers/profile_controller'),
+  Users: () => import('#controllers/users_controller'),
+  WaitlistEntries: () => import('#controllers/waitlist_entries_controller'),
 }

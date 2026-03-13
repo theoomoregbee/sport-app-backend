@@ -8,16 +8,20 @@ export type ScannedRoutes = {
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.profile.update': { paramsTuple?: []; params?: {} }
+    'users.users.profile': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
     'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'waitlist.waitlist_entries.store': { paramsTuple?: []; params?: {} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
     'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
     'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'users.users.profile': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
     'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
@@ -25,6 +29,7 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'users.users.profile': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
     'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
@@ -34,9 +39,11 @@ export type ScannedRoutes = {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
+    'waitlist.waitlist_entries.store': { paramsTuple?: []; params?: {} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
+    'profile.profile.update': { paramsTuple?: []; params?: {} }
     'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
   DELETE: {

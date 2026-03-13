@@ -30,6 +30,18 @@ const routes = {
     tokens: [{"old":"/api/v1/account/profile","type":0,"val":"api","end":""},{"old":"/api/v1/account/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/account/profile","type":0,"val":"account","end":""},{"old":"/api/v1/account/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.profile.show']['types'],
   },
+  'profile.profile.update': {
+    methods: ["PUT"],
+    pattern: '/api/v1/account/profile',
+    tokens: [{"old":"/api/v1/account/profile","type":0,"val":"api","end":""},{"old":"/api/v1/account/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/account/profile","type":0,"val":"account","end":""},{"old":"/api/v1/account/profile","type":0,"val":"profile","end":""}],
+    types: placeholder as Registry['profile.profile.update']['types'],
+  },
+  'users.users.profile': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/users/:id/profile',
+    tokens: [{"old":"/api/v1/users/:id/profile","type":0,"val":"api","end":""},{"old":"/api/v1/users/:id/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/users/:id/profile","type":0,"val":"users","end":""},{"old":"/api/v1/users/:id/profile","type":1,"val":"id","end":""},{"old":"/api/v1/users/:id/profile","type":0,"val":"profile","end":""}],
+    types: placeholder as Registry['users.users.profile']['types'],
+  },
   'courts.courts.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/courts',
@@ -53,6 +65,12 @@ const routes = {
     pattern: '/api/v1/courts/:id',
     tokens: [{"old":"/api/v1/courts/:id","type":0,"val":"api","end":""},{"old":"/api/v1/courts/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/:id","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['courts.courts.show']['types'],
+  },
+  'waitlist.waitlist_entries.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/waitlist',
+    tokens: [{"old":"/api/v1/waitlist","type":0,"val":"api","end":""},{"old":"/api/v1/waitlist","type":0,"val":"v1","end":""},{"old":"/api/v1/waitlist","type":0,"val":"waitlist","end":""}],
+    types: placeholder as Registry['waitlist.waitlist_entries.store']['types'],
   },
   'checkIns.check_ins.store': {
     methods: ["POST"],

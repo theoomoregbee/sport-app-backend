@@ -14,6 +14,12 @@ export interface ApiDefinition {
   profile: {
     profile: {
       show: typeof routes['profile.profile.show']
+      update: typeof routes['profile.profile.update']
+    }
+  }
+  users: {
+    users: {
+      profile: typeof routes['users.users.profile']
     }
   }
   courts: {
@@ -22,6 +28,11 @@ export interface ApiDefinition {
       nearby: typeof routes['courts.courts.nearby']
       showBySlug: typeof routes['courts.courts.show_by_slug']
       show: typeof routes['courts.courts.show']
+    }
+  }
+  waitlist: {
+    waitlistEntries: {
+      store: typeof routes['waitlist.waitlist_entries.store']
     }
   }
   checkIns: {

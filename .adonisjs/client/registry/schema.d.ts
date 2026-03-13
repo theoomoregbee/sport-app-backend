@@ -55,6 +55,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['show']>>>
     }
   }
+  'profile.profile.update': {
+    methods: ["PUT"]
+    pattern: '/api/v1/account/profile'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/profile').updateProfileValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/profile').updateProfileValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'users.users.profile': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/users/:id/profile'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['profile']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['profile']>>>
+    }
+  }
   'courts.courts.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/courts'
@@ -101,6 +125,18 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['show']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['show']>>>
+    }
+  }
+  'waitlist.waitlist_entries.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/waitlist'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/waitlist').createWaitlistEntryValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/waitlist').createWaitlistEntryValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/waitlist_entries_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/waitlist_entries_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'checkIns.check_ins.store': {
