@@ -10,8 +10,15 @@ export default class CourtsController {
    * GET /api/courts
    * List all courts with their latest computed status.
    */
-  async index({ serialize }: HttpContext) {
-    const courts = await Court.query().preload('courtGroups').orderBy('name', 'asc')
+  async index({ request, response, serialize }: HttpContext) {
+    const page = Math.max(1, Number(request.input('page', 1)))
+    const perPage = Math.min(200, Math.max(1, Number(request.input('perPage', 200))))
+
+    const courts = await Court.query()
+      .preload('courtGroups')
+      .orderBy('name', 'asc')
+      .limit(perPage)
+      .offset((page - 1) * perPage)
 
     const results = await Promise.all(
       courts.map(async (court) => {
@@ -19,6 +26,12 @@ export default class CourtsController {
         return CourtTransformer.transformWithStatus(court, status)
       })
     )
+
+    // Pagination meta in headers — keeps the body shape as a plain array so
+    // existing clients don't break. Intentionally omit total count.
+    response.header('X-Page', String(page))
+    response.header('X-Per-Page', String(perPage))
+    response.header('X-Has-More', courts.length === perPage ? 'true' : 'false')
 
     return serialize(results)
   }

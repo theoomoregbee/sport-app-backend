@@ -35,4 +35,21 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.string.optional(),
   DB_DATABASE: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | API Keys — client identification
+  | Optional: if neither is set the middleware allows all requests
+  | (useful for local dev). In production, set both.
+  |----------------------------------------------------------
+  */
+  API_KEY_MOBILE: Env.schema.string.optional(),
+  API_KEY_LANDING: Env.schema.string.optional(),
+
+  /*
+  |----------------------------------------------------------
+  | Rate limiter store
+  |----------------------------------------------------------
+  */
+  LIMITER_STORE: Env.schema.enum.optional(['database', 'memory'] as const),
 })

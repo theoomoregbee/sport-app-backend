@@ -12,20 +12,28 @@ export default class CourtTransformer extends BaseTransformer<Court> {
     super(resource)
   }
 
+  /** Truncate a coordinate to 4 decimal places (~11 m precision). */
+  private static truncateCoord(value: number | null | undefined): number | null {
+    if (value == null) return null
+    return Math.round(value * 10000) / 10000
+  }
+
   toObject() {
     const base = this.pick(this.resource, [
       'id',
       'name',
       'slug',
       'address',
-      'latitude',
-      'longitude',
       'photoUrl',
       'totalCourtCount',
       'isPriority',
       'createdAt',
       'updatedAt',
     ])
+
+    // Limit GPS precision to 4 decimal places to prevent exact location scraping
+    const latitude = CourtTransformer.truncateCoord(this.resource.latitude)
+    const longitude = CourtTransformer.truncateCoord(this.resource.longitude)
 
     const groups = CourtGroupTransformer.transform(this.whenLoaded(this.resource.courtGroups))
 
@@ -35,6 +43,8 @@ export default class CourtTransformer extends BaseTransformer<Court> {
 
     return {
       ...base,
+      latitude,
+      longitude,
       courtGroups: groups,
       recentCheckIns,
       ...(this.computedStatus
