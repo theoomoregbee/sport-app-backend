@@ -52,5 +52,15 @@ router
       .prefix('check-ins')
       .as('checkIns')
       .use(middleware.auth())
+
+    // Presence (passive user count) — requires auth
+    router
+      .group(() => {
+        router.put('/:courtId', [controllers.Presences, 'store'])
+        router.delete('/:courtId', [controllers.Presences, 'destroy'])
+      })
+      .prefix('presence')
+      .as('presence')
+      .use(middleware.auth())
   })
   .prefix('/api/v1')

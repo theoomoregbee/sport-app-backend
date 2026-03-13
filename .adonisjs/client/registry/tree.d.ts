@@ -28,4 +28,10 @@ export interface ApiDefinition {
       store: typeof routes['checkIns.check_ins.store']
     }
   }
+  presence: {
+    presences: {
+      store: typeof routes['presence.presences.store']
+      destroy: typeof routes['presence.presences.destroy']
+    }
+  }
 }

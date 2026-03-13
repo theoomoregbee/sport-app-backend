@@ -45,6 +45,7 @@ export default class CourtTransformer extends BaseTransformer<Court> {
             lastUpdatedRelative: this.computedStatus.lastUpdatedRelative,
             checkInCount: this.computedStatus.checkInCount,
             racketsWaiting: this.computedStatus.racketsWaiting,
+            activeUsersCount: this.computedStatus.activeUsersCount,
           }
         : {}),
     }

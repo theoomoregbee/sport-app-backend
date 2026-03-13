@@ -103,4 +103,28 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/check_ins_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'presence.presences.store': {
+    methods: ["PUT"]
+    pattern: '/api/v1/presence/:courtId'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { courtId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['store']>>>
+    }
+  }
+  'presence.presences.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/presence/:courtId'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { courtId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['destroy']>>>
+    }
+  }
 }

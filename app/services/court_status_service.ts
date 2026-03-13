@@ -1,4 +1,5 @@
 import CheckIn, { type CheckInStatus } from '#models/check_in'
+import Presence from '#models/presence'
 import { DateTime } from 'luxon'
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'none'
@@ -10,6 +11,7 @@ export interface CourtStatus {
   lastUpdatedRelative: string | null
   checkInCount: number
   racketsWaiting: number | null
+  activeUsersCount: number
 }
 
 const STATUS_VALUES: Record<CheckInStatus, number> = {
@@ -53,6 +55,7 @@ export function computeStatusFromCheckIns(
       lastUpdatedRelative: null,
       checkInCount: 0,
       racketsWaiting: null,
+      activeUsersCount: 0,
     }
   }
 
@@ -97,18 +100,27 @@ export function computeStatusFromCheckIns(
     lastUpdatedRelative: relativeTime(lastUpdated, now),
     checkInCount: checkIns.length,
     racketsWaiting,
+    activeUsersCount: 0,
   }
 }
 
 export default class CourtStatusService {
   static async computeStatus(courtId: number): Promise<CourtStatus> {
-    const twoHoursAgo = DateTime.utc().minus({ hours: 2 })
+    const now = DateTime.utc()
+    const twoHoursAgo = now.minus({ hours: 2 })
+    const thirtyMinutesAgo = now.minus({ minutes: 30 })
 
-    const checkIns = await CheckIn.query()
-      .where('court_id', courtId)
-      .where('created_at', '>=', twoHoursAgo.toSQL()!)
-      .orderBy('created_at', 'desc')
+    const [checkIns, presenceRows] = await Promise.all([
+      CheckIn.query()
+        .where('court_id', courtId)
+        .where('created_at', '>=', twoHoursAgo.toSQL()!)
+        .orderBy('created_at', 'desc'),
+      Presence.query()
+        .where('court_id', courtId)
+        .where('last_heartbeat_at', '>=', thirtyMinutesAgo.toSQL()!),
+    ])
 
-    return computeStatusFromCheckIns(checkIns)
+    const status = computeStatusFromCheckIns(checkIns)
+    return { ...status, activeUsersCount: presenceRows.length }
   }
 }

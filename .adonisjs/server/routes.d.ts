@@ -12,6 +12,8 @@ export type ScannedRoutes = {
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
+    'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -30,6 +32,12 @@ export type ScannedRoutes = {
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
+  }
+  PUT: {
+    'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+  }
+  DELETE: {
+    'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

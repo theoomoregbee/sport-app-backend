@@ -33,7 +33,7 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class CheckInSchema extends BaseModel {
-  static $columns = ['confidenceWeight', 'courtGroupId', 'courtId', 'createdAt', 'id', 'latitude', 'longitude', 'racketsWaiting', 'status', 'userId'] as const
+  static $columns = ['confidenceWeight', 'courtGroupId', 'courtId', 'createdAt', 'id', 'latitude', 'longitude', 'racketsWaiting', 'source', 'status', 'userId'] as const
   $columns = CheckInSchema.$columns
   @column()
   declare confidenceWeight: string
@@ -51,6 +51,8 @@ export class CheckInSchema extends BaseModel {
   declare longitude: string
   @column()
   declare racketsWaiting: number | null
+  @column()
+  declare source: string
   @column()
   declare status: string
   @column()
@@ -105,8 +107,23 @@ export class CourtSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class PresenceSchema extends BaseModel {
+  static $columns = ['courtId', 'enteredAt', 'id', 'lastHeartbeatAt', 'userId'] as const
+  $columns = PresenceSchema.$columns
+  @column()
+  declare courtId: number
+  @column.dateTime()
+  declare enteredAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column.dateTime()
+  declare lastHeartbeatAt: DateTime
+  @column()
+  declare userId: number
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'isAmbassador', 'password', 'phone', 'updatedAt'] as const
+  static $columns = ['createdAt', 'email', 'fullName', 'id', 'isAmbassador', 'isSuperAdmin', 'password', 'phone', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -118,6 +135,8 @@ export class UserSchema extends BaseModel {
   declare id: number
   @column()
   declare isAmbassador: boolean
+  @column()
+  declare isSuperAdmin: boolean
   @column({ serializeAs: null })
   declare password: string
   @column()
