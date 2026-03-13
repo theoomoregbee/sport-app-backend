@@ -36,11 +36,21 @@ router
     router
       .group(() => {
         router.get('/profile', [controllers.Profile, 'show'])
+        router.put('/profile', [controllers.Profile, 'update'])
       })
       .prefix('account')
       .as('profile')
       .use(middleware.auth())
       .use(authedThrottle)
+
+    // Public user profiles
+    router
+      .group(() => {
+        router.get('/:id/profile', [controllers.Users, 'profile'])
+      })
+      .prefix('users')
+      .as('users')
+      .use(courtDetailThrottle)
 
     // Courts — public read, per-endpoint throttle
     router
