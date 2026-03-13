@@ -29,8 +29,10 @@ export default class CheckInsController {
       Number(court.longitude)
     )
 
-    const devAdminBypass = app.inDev && user.isAmbassador
-    if (!devAdminBypass && distanceMetres > MAX_CHECKIN_DISTANCE_METRES) {
+    // Super admins can check in from anywhere (remote/admin check-ins).
+    // Dev-only fallback: ambassadors can also bypass when running locally.
+    const skipProximityCheck = user.isSuperAdmin || (app.inDev && user.isAmbassador)
+    if (!skipProximityCheck && distanceMetres > MAX_CHECKIN_DISTANCE_METRES) {
       return response.unprocessableEntity({
         message: `You must be within ${MAX_CHECKIN_DISTANCE_METRES}m of the court to check in. You appear to be ${Math.round(distanceMetres)}m away.`,
       })
@@ -50,8 +52,9 @@ export default class CheckInsController {
       })
     }
 
-    // Ambassador check-ins carry a higher confidence weight
-    const confidenceWeight = user.isAmbassador ? 1.5 : 1.0
+    // Super admins and ambassadors get the elevated confidence weight
+    const confidenceWeight = user.isSuperAdmin || user.isAmbassador ? 1.5 : 1.0
+    const source = user.isSuperAdmin ? 'admin' : 'user'
 
     const checkIn = await CheckIn.create({
       courtId: data.courtId,
@@ -62,6 +65,7 @@ export default class CheckInsController {
       latitude: data.latitude,
       longitude: data.longitude,
       confidenceWeight,
+      source,
     })
 
     return serialize(CheckInTransformer.transform(checkIn))

@@ -15,6 +15,9 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   @column()
   declare isAmbassador: boolean
 
+  @column()
+  declare isSuperAdmin: boolean
+
   get initials() {
     const [first, last] = this.fullName ? this.fullName.split(' ') : this.email.split('@')
     if (first && last) {

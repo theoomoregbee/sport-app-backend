@@ -6,6 +6,7 @@ import CourtGroup from '#models/court_group'
 import User from '#models/user'
 
 export type CheckInStatus = 'empty' | 'moderate' | 'packed'
+export type CheckInSource = 'user' | 'admin'
 
 export default class CheckIn extends BaseModel {
   static table = 'check_ins'
@@ -36,6 +37,9 @@ export default class CheckIn extends BaseModel {
 
   @column()
   declare confidenceWeight: number
+
+  @column()
+  declare source: CheckInSource
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
