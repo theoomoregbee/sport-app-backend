@@ -15,13 +15,6 @@ router.get('/', () => {
   return { hello: 'world' }
 })
 
-// Court web preview — no auth, no API prefix
-router.get('/courts/:slug', [controllers.CourtPreview, 'show']).as('courtPreview')
-
-// Universal Links (iOS) / App Links (Android) verification files
-router.get('/.well-known/apple-app-site-association', [controllers.AppLinks, 'apple'])
-router.get('/.well-known/assetlinks.json', [controllers.AppLinks, 'android'])
-
 router
   .group(() => {
     router
@@ -46,6 +39,7 @@ router
       .group(() => {
         router.get('/', [controllers.Courts, 'index'])
         router.get('/nearby', [controllers.Courts, 'nearby'])
+        router.get('/slug/:slug', [controllers.Courts, 'showBySlug'])
         router.get('/:id', [controllers.Courts, 'show'])
       })
       .prefix('courts')

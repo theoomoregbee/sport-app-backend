@@ -2,11 +2,6 @@
 import type { routes } from './index.ts'
 
 export interface ApiDefinition {
-  courtPreview: typeof routes['courtPreview']
-  appLinks: {
-    apple: typeof routes['app_links.apple']
-    android: typeof routes['app_links.android']
-  }
   auth: {
     newAccount: {
       store: typeof routes['auth.new_account.store']
@@ -25,6 +20,7 @@ export interface ApiDefinition {
     courts: {
       index: typeof routes['courts.courts.index']
       nearby: typeof routes['courts.courts.nearby']
+      showBySlug: typeof routes['courts.courts.show_by_slug']
       show: typeof routes['courts.courts.show']
     }
   }

@@ -6,24 +6,6 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'courtPreview': {
-    methods: ["GET","HEAD"],
-    pattern: '/courts/:slug',
-    tokens: [{"old":"/courts/:slug","type":0,"val":"courts","end":""},{"old":"/courts/:slug","type":1,"val":"slug","end":""}],
-    types: placeholder as Registry['courtPreview']['types'],
-  },
-  'app_links.apple': {
-    methods: ["GET","HEAD"],
-    pattern: '/.well-known/apple-app-site-association',
-    tokens: [{"old":"/.well-known/apple-app-site-association","type":0,"val":".well-known","end":""},{"old":"/.well-known/apple-app-site-association","type":0,"val":"apple-app-site-association","end":""}],
-    types: placeholder as Registry['app_links.apple']['types'],
-  },
-  'app_links.android': {
-    methods: ["GET","HEAD"],
-    pattern: '/.well-known/assetlinks.json',
-    tokens: [{"old":"/.well-known/assetlinks.json","type":0,"val":".well-known","end":""},{"old":"/.well-known/assetlinks.json","type":0,"val":"assetlinks.json","end":""}],
-    types: placeholder as Registry['app_links.android']['types'],
-  },
   'auth.new_account.store': {
     methods: ["POST"],
     pattern: '/api/v1/auth/signup',
@@ -59,6 +41,12 @@ const routes = {
     pattern: '/api/v1/courts/nearby',
     tokens: [{"old":"/api/v1/courts/nearby","type":0,"val":"api","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/nearby","type":0,"val":"nearby","end":""}],
     types: placeholder as Registry['courts.courts.nearby']['types'],
+  },
+  'courts.courts.show_by_slug': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/courts/slug/:slug',
+    tokens: [{"old":"/api/v1/courts/slug/:slug","type":0,"val":"api","end":""},{"old":"/api/v1/courts/slug/:slug","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/slug/:slug","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/slug/:slug","type":0,"val":"slug","end":""},{"old":"/api/v1/courts/slug/:slug","type":1,"val":"slug","end":""}],
+    types: placeholder as Registry['courts.courts.show_by_slug']['types'],
   },
   'courts.courts.show': {
     methods: ["GET","HEAD"],

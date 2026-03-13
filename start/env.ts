@@ -21,13 +21,6 @@ export default await Env.create(new URL('../', import.meta.url), {
   // App
   APP_KEY: Env.schema.secret(),
   APP_URL: Env.schema.string({ format: 'url', tld: false }),
-  APP_SCHEME: Env.schema.string.optional(),
-  APP_IOS_BUNDLE_ID: Env.schema.string.optional(),
-  APP_IOS_TEAM_ID: Env.schema.string.optional(),
-  APP_IOS_STORE_URL: Env.schema.string.optional(),
-  APP_ANDROID_PACKAGE: Env.schema.string.optional(),
-  APP_ANDROID_SHA256_CERT: Env.schema.string.optional(),
-  APP_ANDROID_STORE_URL: Env.schema.string.optional(),
 
   // Session
   SESSION_DRIVER: Env.schema.enum(['cookie', 'memory', 'database'] as const),

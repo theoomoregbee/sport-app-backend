@@ -4,36 +4,30 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
-    'courtPreview': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
-    'app_links.apple': { paramsTuple?: []; params?: {} }
-    'app_links.android': { paramsTuple?: []; params?: {} }
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.store': { paramsTuple?: []; params?: {} }
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
+    'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
     'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
     'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
   GET: {
-    'courtPreview': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
-    'app_links.apple': { paramsTuple?: []; params?: {} }
-    'app_links.android': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
+    'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
-    'courtPreview': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
-    'app_links.apple': { paramsTuple?: []; params?: {} }
-    'app_links.android': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'courts.courts.index': { paramsTuple?: []; params?: {} }
     'courts.courts.nearby': { paramsTuple?: []; params?: {} }
+    'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {

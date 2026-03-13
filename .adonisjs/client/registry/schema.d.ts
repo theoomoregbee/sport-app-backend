@@ -7,42 +7,6 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
-  'courtPreview': {
-    methods: ["GET","HEAD"]
-    pattern: '/courts/:slug'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { slug: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/court_preview_controller').default['show']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/court_preview_controller').default['show']>>>
-    }
-  }
-  'app_links.apple': {
-    methods: ["GET","HEAD"]
-    pattern: '/.well-known/apple-app-site-association'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/app_links_controller').default['apple']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/app_links_controller').default['apple']>>>
-    }
-  }
-  'app_links.android': {
-    methods: ["GET","HEAD"]
-    pattern: '/.well-known/assetlinks.json'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/app_links_controller').default['android']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/app_links_controller').default['android']>>>
-    }
-  }
   'auth.new_account.store': {
     methods: ["POST"]
     pattern: '/api/v1/auth/signup'
@@ -113,6 +77,18 @@ export interface Registry {
       query: ExtractQueryForGet<InferInput<(typeof import('#validators/court').nearbyQueryValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['nearby']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['nearby']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'courts.courts.show_by_slug': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/courts/slug/:slug'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { slug: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['showBySlug']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/courts_controller').default['showBySlug']>>>
     }
   }
   'courts.courts.show': {

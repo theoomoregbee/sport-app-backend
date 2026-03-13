@@ -115,4 +115,23 @@ export default class CourtsController {
     const status = await CourtStatusService.computeStatus(court.id)
     return serialize(CourtTransformer.transformWithStatus(court, status))
   }
+
+  /**
+   * GET /api/courts/slug/:slug
+   * Single court lookup by slug — used by the Next.js landing preview page.
+   */
+  async showBySlug({ params, serialize, response }: HttpContext) {
+    const court = await Court.query()
+      .where('slug', params.slug)
+      .preload('courtGroups')
+      .preload('checkIns', (q) => q.orderBy('created_at', 'desc').limit(5))
+      .first()
+
+    if (!court) {
+      return response.notFound({ message: 'Court not found' })
+    }
+
+    const status = await CourtStatusService.computeStatus(court.id)
+    return serialize(CourtTransformer.transformWithStatus(court, status))
+  }
 }
