@@ -6,6 +6,24 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
+  'courtPreview': {
+    methods: ["GET","HEAD"],
+    pattern: '/courts/:slug',
+    tokens: [{"old":"/courts/:slug","type":0,"val":"courts","end":""},{"old":"/courts/:slug","type":1,"val":"slug","end":""}],
+    types: placeholder as Registry['courtPreview']['types'],
+  },
+  'app_links.apple': {
+    methods: ["GET","HEAD"],
+    pattern: '/.well-known/apple-app-site-association',
+    tokens: [{"old":"/.well-known/apple-app-site-association","type":0,"val":".well-known","end":""},{"old":"/.well-known/apple-app-site-association","type":0,"val":"apple-app-site-association","end":""}],
+    types: placeholder as Registry['app_links.apple']['types'],
+  },
+  'app_links.android': {
+    methods: ["GET","HEAD"],
+    pattern: '/.well-known/assetlinks.json',
+    tokens: [{"old":"/.well-known/assetlinks.json","type":0,"val":".well-known","end":""},{"old":"/.well-known/assetlinks.json","type":0,"val":"assetlinks.json","end":""}],
+    types: placeholder as Registry['app_links.android']['types'],
+  },
   'auth.new_account.store': {
     methods: ["POST"],
     pattern: '/api/v1/auth/signup',
