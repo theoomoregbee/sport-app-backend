@@ -81,7 +81,12 @@ router
       .use(middleware.auth())
       .use(authedThrottle)
 
-    // Presence (passive user count) — requires auth
+    // Presence feed — public read
+    router
+      .get('/presence/:courtId', [controllers.Presences, 'index'])
+      .use(courtDetailThrottle)
+
+    // Presence mutations — requires auth
     router
       .group(() => {
         router.put('/:courtId', [controllers.Presences, 'store'])

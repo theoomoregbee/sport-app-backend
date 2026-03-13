@@ -25,6 +25,7 @@ export default class UserTransformer extends BaseTransformer<User> {
       'bio',
       'avatarUrl',
       'hideName',
+      'showToOthers',
       'profileCompletedAt',
     ])
 

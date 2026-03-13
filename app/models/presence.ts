@@ -22,6 +22,12 @@ export default class Presence extends BaseModel {
   @column.dateTime()
   declare lastHeartbeatAt: DateTime
 
+  @column()
+  declare isHeadingHere: boolean
+
+  @column()
+  declare etaMinutes: number | null
+
   @belongsTo(() => Court)
   declare court: BelongsTo<typeof Court>
 

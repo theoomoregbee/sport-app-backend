@@ -40,6 +40,9 @@ export interface ApiDefinition {
       store: typeof routes['checkIns.check_ins.store']
     }
   }
+  presences: {
+    index: typeof routes['presences.index']
+  }
   presence: {
     presences: {
       store: typeof routes['presence.presences.store']

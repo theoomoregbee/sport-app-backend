@@ -151,6 +151,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/check_ins_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'presences.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/presence/:courtId'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { courtId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['index']>>>
+    }
+  }
   'presence.presences.store': {
     methods: ["PUT"]
     pattern: '/api/v1/presence/:courtId'

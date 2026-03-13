@@ -78,6 +78,12 @@ const routes = {
     tokens: [{"old":"/api/v1/check-ins","type":0,"val":"api","end":""},{"old":"/api/v1/check-ins","type":0,"val":"v1","end":""},{"old":"/api/v1/check-ins","type":0,"val":"check-ins","end":""}],
     types: placeholder as Registry['checkIns.check_ins.store']['types'],
   },
+  'presences.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/presence/:courtId',
+    tokens: [{"old":"/api/v1/presence/:courtId","type":0,"val":"api","end":""},{"old":"/api/v1/presence/:courtId","type":0,"val":"v1","end":""},{"old":"/api/v1/presence/:courtId","type":0,"val":"presence","end":""},{"old":"/api/v1/presence/:courtId","type":1,"val":"courtId","end":""}],
+    types: placeholder as Registry['presences.index']['types'],
+  },
   'presence.presences.store': {
     methods: ["PUT"],
     pattern: '/api/v1/presence/:courtId',

@@ -125,14 +125,18 @@ export class DenyListSchema extends BaseModel {
 }
 
 export class PresenceSchema extends BaseModel {
-  static $columns = ['courtId', 'enteredAt', 'id', 'lastHeartbeatAt', 'userId'] as const
+  static $columns = ['courtId', 'enteredAt', 'etaMinutes', 'id', 'isHeadingHere', 'lastHeartbeatAt', 'userId'] as const
   $columns = PresenceSchema.$columns
   @column()
   declare courtId: number
   @column.dateTime()
   declare enteredAt: DateTime
+  @column()
+  declare etaMinutes: number | null
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare isHeadingHere: boolean
   @column.dateTime()
   declare lastHeartbeatAt: DateTime
   @column()
@@ -151,7 +155,7 @@ export class RateLimitSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['avatarUrl', 'bio', 'createdAt', 'email', 'fullName', 'hideName', 'homeCourtIds', 'id', 'isAmbassador', 'isSuperAdmin', 'password', 'phone', 'playStyle', 'preferredTimes', 'profileCompletedAt', 'skillLevel', 'updatedAt'] as const
+  static $columns = ['avatarUrl', 'bio', 'createdAt', 'email', 'fullName', 'hideName', 'homeCourtIds', 'id', 'isAmbassador', 'isSuperAdmin', 'password', 'phone', 'playStyle', 'preferredTimes', 'profileCompletedAt', 'showToOthers', 'skillLevel', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column()
   declare avatarUrl: string | null
@@ -183,6 +187,8 @@ export class UserSchema extends BaseModel {
   declare preferredTimes: any | null
   @column.dateTime()
   declare profileCompletedAt: DateTime | null
+  @column()
+  declare showToOthers: boolean
   @column()
   declare skillLevel: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })

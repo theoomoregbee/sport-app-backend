@@ -19,5 +19,6 @@ export const updateProfileValidator = vine.compile(
     homeCourtIds: vine.array(vine.string()).nullable().optional(),
     avatarUrl: vine.string().url().nullable().optional(),
     hideName: vine.boolean().optional(),
+    showToOthers: vine.boolean().optional(),
   })
 )

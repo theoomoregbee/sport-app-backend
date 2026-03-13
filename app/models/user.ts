@@ -55,6 +55,9 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   @column()
   declare hideName: boolean
 
+  @column()
+  declare showToOthers: boolean
+
   @column.dateTime()
   declare profileCompletedAt: DateTime | null
 
