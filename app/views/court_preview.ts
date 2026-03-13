@@ -71,8 +71,12 @@ export function renderCourtPreview({
   <meta name="twitter:title" content="${court.name} — CourtCheck" />
   <meta name="twitter:description" content="Court is currently ${statusLabel.toLowerCase()}. ${lastUpdatedText}." />
 
-  ${iosBundleId ? `<!-- iOS Smart App Banner -->
-  <meta name="apple-itunes-app" content="app-id=${iosBundleId}, app-argument=${appDeepLink}" />` : ''}
+  ${
+    iosBundleId
+      ? `<!-- iOS Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=${iosBundleId}, app-argument=${appDeepLink}" />`
+      : ''
+  }
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -186,11 +190,15 @@ export function renderCourtPreview({
 
     <a class="open-btn" href="${appDeepLink}">Open in CourtCheck App</a>
 
-    ${iosStoreUrl || androidStoreUrl ? `
+    ${
+      iosStoreUrl || androidStoreUrl
+        ? `
     <div class="store-row">
       ${iosStoreUrl ? `<a class="store-btn" href="${iosStoreUrl}">⬇ App Store</a>` : ''}
       ${androidStoreUrl ? `<a class="store-btn" href="${androidStoreUrl}">⬇ Google Play</a>` : ''}
-    </div>` : ''}
+    </div>`
+        : ''
+    }
   </div>
 
   <div class="footer">Real-time tennis court availability in Toronto</div>
