@@ -43,6 +43,15 @@ export interface ApiDefinition {
   presences: {
     index: typeof routes['presences.index']
   }
+  matchRequests: {
+    index: typeof routes['match_requests.index']
+    matchRequests: {
+      mine: typeof routes['matchRequests.match_requests.mine']
+      store: typeof routes['matchRequests.match_requests.store']
+      destroy: typeof routes['matchRequests.match_requests.destroy']
+      respond: typeof routes['matchRequests.match_requests.respond']
+    }
+  }
   presence: {
     presences: {
       store: typeof routes['presence.presences.store']

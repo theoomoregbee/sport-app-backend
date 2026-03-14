@@ -124,6 +124,33 @@ export class DenyListSchema extends BaseModel {
   declare value: string
 }
 
+export class MatchRequestSchema extends BaseModel {
+  static $columns = ['courtId', 'createdAt', 'expiresAt', 'id', 'message', 'responderUserId', 'scheduledFor', 'skillLevels', 'status', 'updatedAt', 'userId'] as const
+  $columns = MatchRequestSchema.$columns
+  @column()
+  declare courtId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare expiresAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare message: string | null
+  @column()
+  declare responderUserId: number | null
+  @column.dateTime()
+  declare scheduledFor: DateTime | null
+  @column()
+  declare skillLevels: any
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class PresenceSchema extends BaseModel {
   static $columns = ['courtId', 'enteredAt', 'etaMinutes', 'id', 'isHeadingHere', 'lastHeartbeatAt', 'userId'] as const
   $columns = PresenceSchema.$columns

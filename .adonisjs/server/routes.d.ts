@@ -17,6 +17,11 @@ export type ScannedRoutes = {
     'waitlist.waitlist_entries.store': { paramsTuple?: []; params?: {} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
     'presences.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'match_requests.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'matchRequests.match_requests.mine': { paramsTuple?: []; params?: {} }
+    'matchRequests.match_requests.store': { paramsTuple?: []; params?: {} }
+    'matchRequests.match_requests.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'matchRequests.match_requests.respond': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
     'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
@@ -28,6 +33,8 @@ export type ScannedRoutes = {
     'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'presences.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'match_requests.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'matchRequests.match_requests.mine': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -37,6 +44,8 @@ export type ScannedRoutes = {
     'courts.courts.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'courts.courts.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'presences.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'match_requests.index': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
+    'matchRequests.match_requests.mine': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
@@ -44,12 +53,15 @@ export type ScannedRoutes = {
     'auth.access_token.destroy': { paramsTuple?: []; params?: {} }
     'waitlist.waitlist_entries.store': { paramsTuple?: []; params?: {} }
     'checkIns.check_ins.store': { paramsTuple?: []; params?: {} }
+    'matchRequests.match_requests.store': { paramsTuple?: []; params?: {} }
+    'matchRequests.match_requests.respond': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PUT: {
     'profile.profile.update': { paramsTuple?: []; params?: {} }
     'presence.presences.store': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
   DELETE: {
+    'matchRequests.match_requests.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'presence.presences.destroy': { paramsTuple: [ParamValue]; params: {'courtId': ParamValue} }
   }
 }

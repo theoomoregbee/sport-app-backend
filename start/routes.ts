@@ -86,6 +86,24 @@ router
       .get('/presence/:courtId', [controllers.Presences, 'index'])
       .use(courtDetailThrottle)
 
+    // Match requests per court — public read
+    router
+      .get('/courts/:courtId/match-requests', [controllers.MatchRequests, 'index'])
+      .use(courtDetailThrottle)
+
+    // Match requests — requires auth
+    router
+      .group(() => {
+        router.get('/mine', [controllers.MatchRequests, 'mine'])
+        router.post('/', [controllers.MatchRequests, 'store'])
+        router.delete('/:id', [controllers.MatchRequests, 'destroy'])
+        router.post('/:id/respond', [controllers.MatchRequests, 'respond'])
+      })
+      .prefix('match-requests')
+      .as('matchRequests')
+      .use(middleware.auth())
+      .use(authedThrottle)
+
     // Presence mutations — requires auth
     router
       .group(() => {

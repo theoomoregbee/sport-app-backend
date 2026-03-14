@@ -84,6 +84,36 @@ const routes = {
     tokens: [{"old":"/api/v1/presence/:courtId","type":0,"val":"api","end":""},{"old":"/api/v1/presence/:courtId","type":0,"val":"v1","end":""},{"old":"/api/v1/presence/:courtId","type":0,"val":"presence","end":""},{"old":"/api/v1/presence/:courtId","type":1,"val":"courtId","end":""}],
     types: placeholder as Registry['presences.index']['types'],
   },
+  'match_requests.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/courts/:courtId/match-requests',
+    tokens: [{"old":"/api/v1/courts/:courtId/match-requests","type":0,"val":"api","end":""},{"old":"/api/v1/courts/:courtId/match-requests","type":0,"val":"v1","end":""},{"old":"/api/v1/courts/:courtId/match-requests","type":0,"val":"courts","end":""},{"old":"/api/v1/courts/:courtId/match-requests","type":1,"val":"courtId","end":""},{"old":"/api/v1/courts/:courtId/match-requests","type":0,"val":"match-requests","end":""}],
+    types: placeholder as Registry['match_requests.index']['types'],
+  },
+  'matchRequests.match_requests.mine': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/match-requests/mine',
+    tokens: [{"old":"/api/v1/match-requests/mine","type":0,"val":"api","end":""},{"old":"/api/v1/match-requests/mine","type":0,"val":"v1","end":""},{"old":"/api/v1/match-requests/mine","type":0,"val":"match-requests","end":""},{"old":"/api/v1/match-requests/mine","type":0,"val":"mine","end":""}],
+    types: placeholder as Registry['matchRequests.match_requests.mine']['types'],
+  },
+  'matchRequests.match_requests.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/match-requests',
+    tokens: [{"old":"/api/v1/match-requests","type":0,"val":"api","end":""},{"old":"/api/v1/match-requests","type":0,"val":"v1","end":""},{"old":"/api/v1/match-requests","type":0,"val":"match-requests","end":""}],
+    types: placeholder as Registry['matchRequests.match_requests.store']['types'],
+  },
+  'matchRequests.match_requests.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/match-requests/:id',
+    tokens: [{"old":"/api/v1/match-requests/:id","type":0,"val":"api","end":""},{"old":"/api/v1/match-requests/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/match-requests/:id","type":0,"val":"match-requests","end":""},{"old":"/api/v1/match-requests/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['matchRequests.match_requests.destroy']['types'],
+  },
+  'matchRequests.match_requests.respond': {
+    methods: ["POST"],
+    pattern: '/api/v1/match-requests/:id/respond',
+    tokens: [{"old":"/api/v1/match-requests/:id/respond","type":0,"val":"api","end":""},{"old":"/api/v1/match-requests/:id/respond","type":0,"val":"v1","end":""},{"old":"/api/v1/match-requests/:id/respond","type":0,"val":"match-requests","end":""},{"old":"/api/v1/match-requests/:id/respond","type":1,"val":"id","end":""},{"old":"/api/v1/match-requests/:id/respond","type":0,"val":"respond","end":""}],
+    types: placeholder as Registry['matchRequests.match_requests.respond']['types'],
+  },
   'presence.presences.store': {
     methods: ["PUT"],
     pattern: '/api/v1/presence/:courtId',

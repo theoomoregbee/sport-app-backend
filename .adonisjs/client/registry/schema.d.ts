@@ -163,6 +163,66 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/presences_controller').default['index']>>>
     }
   }
+  'match_requests.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/courts/:courtId/match-requests'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { courtId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['index']>>>
+    }
+  }
+  'matchRequests.match_requests.mine': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/match-requests/mine'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['mine']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['mine']>>>
+    }
+  }
+  'matchRequests.match_requests.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/match-requests'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/match_request').createMatchRequestValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/match_request').createMatchRequestValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'matchRequests.match_requests.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/match-requests/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['destroy']>>>
+    }
+  }
+  'matchRequests.match_requests.respond': {
+    methods: ["POST"]
+    pattern: '/api/v1/match-requests/:id/respond'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['respond']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/match_requests_controller').default['respond']>>>
+    }
+  }
   'presence.presences.store': {
     methods: ["PUT"]
     pattern: '/api/v1/presence/:courtId'
